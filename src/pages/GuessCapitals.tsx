@@ -156,7 +156,7 @@ export default function GuessCapitals() {
     if (selectedAnswer === null) return
     if (currentIndex >= total - 1) return
     const isCorrect = question.options.find((o) => o.id === selectedAnswer)?.isCorrect === true
-    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 1000)
+    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), isCorrect ? 1000 : 1250)
     return () => clearTimeout(timer)
   }, [selectedAnswer])
 

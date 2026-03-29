@@ -129,7 +129,7 @@ export default function GuessFlags() {
     if (selectedAnswer === null) return
     if (currentIndex >= total - 1) return
     const isCorrect = selectedAnswer === question.correct.code
-    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 1000)
+    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), isCorrect ? 1000 : 1250)
     return () => clearTimeout(timer)
   }, [selectedAnswer])
 
