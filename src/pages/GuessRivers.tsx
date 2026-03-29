@@ -128,7 +128,7 @@ export default function GuessRivers() {
     if (selectedAnswer === null) return
     if (currentIndex >= total - 1) return
     const isCorrect = selectedAnswer === question.river.id
-    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 500)
+    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 1000)
     return () => clearTimeout(timer)
   }, [selectedAnswer])
 

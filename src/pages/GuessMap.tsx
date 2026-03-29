@@ -21,7 +21,7 @@ const regionProjection: Record<Region, { center: [number, number]; scale: number
 
 function getProjection(country: MapCountry): { center: [number, number]; scale: number } {
   const region = regionProjection[country.region]
-  const countryScale = Math.min(5000, 300000 / Math.sqrt(country.area))
+  const countryScale = Math.min(10000, 300000 / Math.sqrt(country.area))
   if (countryScale > region.scale) {
     return { center: country.center, scale: countryScale }
   }
@@ -62,7 +62,7 @@ function WorldMap({ country }: { country: MapCountry }) {
         if (t < 1) animRef.current.rafId = requestAnimationFrame(animate)
       }
       animRef.current.rafId = requestAnimationFrame(animate)
-    }, 500)
+    }, 1000)
     return cancelAnim
   }, [])
 
@@ -230,7 +230,7 @@ export default function GuessMap() {
     if (selectedAnswer === null) return
     if (currentIndex >= total - 1) return
     const isCorrect = selectedAnswer === question.correct.code
-    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 500)
+    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 1000)
     return () => clearTimeout(timer)
   }, [selectedAnswer])
 
