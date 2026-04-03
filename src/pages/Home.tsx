@@ -43,15 +43,9 @@ export default function Home() {
           Gissa floder
         </h2>
         <div className="difficulty-buttons">
-          {difficulties.map(({ value, label }) => (
-            <button
-              key={value}
-              className={`diff-btn diff-btn--${value}`}
-              onClick={() => navigate(`/guessRivers?difficulty=${value}`)}
-            >
-              {label}
-            </button>
-          ))}
+          <button className="diff-btn diff-btn--medium" style={{ flex: 'none', width: 'calc((100% - 20px) / 3)' }} onClick={() => navigate('/guessRivers')}>
+            Medel
+          </button>
         </div>
       </section>
 

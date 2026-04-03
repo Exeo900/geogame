@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(mv /c/Kod/geo-app/src/App.jsx /c/Kod/geo-app/src/App.tsx)",
+      "Bash(mv /c/Kod/geo-app/src/main.jsx /c/Kod/geo-app/src/main.tsx)",
+      "Bash(git add:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

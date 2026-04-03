@@ -60,6 +60,7 @@ export const rivers: River[] = [
     length: 4400,
     countries: ['Ryssland'],
     outflow: 'Laptevhavet',
+    image: 'lena.png',
   },
   {
     id: 'mekong',
@@ -117,6 +118,7 @@ export const rivers: River[] = [
     length: 3180,
     countries: ['Kina', 'Indien', 'Pakistan'],
     outflow: 'Arabiska havet',
+    image: 'indus.png',
   },
   {
     id: 'amur',
@@ -175,6 +177,15 @@ export const rivers: River[] = [
     length: 2330,
     countries: ['USA', 'Mexiko'],
     outflow: 'Californiabukten',
+  },
+  {
+    id: 'seine',
+    name: 'Seine',
+    continent: 'Europa',
+    length: 775,
+    countries: ['Frankrike'],
+    outflow: 'Engelska kanalen',
+    image: 'seine.jpg',
   },
   {
     id: 'rhen',

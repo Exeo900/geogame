@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
-import { getByDifficulty, type RiverQuiz, type Difficulty, type QuestionType } from '../data/guessRivers'
+import { useNavigate } from 'react-router-dom'
+import { getByDifficulty, type RiverQuiz, type QuestionType } from '../data/guessRivers'
 import '../styles/quiz.css'
 import '../styles/rivers.css'
 
@@ -19,9 +19,9 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-function buildSession(difficulty: Difficulty): RiverQuestion[] {
-  const pool = getByDifficulty(difficulty)
-  const count = Math.min(pool.length, 20)
+function buildSession(): RiverQuestion[] {
+  const pool = getByDifficulty()
+  const count = Math.min(pool.length, 10)
   const selected = shuffle(pool).slice(0, count)
 
   return selected.map((river) => {
@@ -84,12 +84,9 @@ function RiverResults({
 }
 
 export default function GuessRivers() {
-  const [searchParams] = useSearchParams()
-  const difficulty = (searchParams.get('difficulty') ?? 'easy') as Difficulty
-
-  const [session, setSession] = useState<RiverQuestion[]>(() => buildSession(difficulty))
+  const [session, setSession] = useState<RiverQuestion[]>(() => buildSession())
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers] = useState<(string | null)[]>(() => Array(Math.min(getByDifficulty(difficulty).length, 20)).fill(null))
+  const [answers, setAnswers] = useState<(string | null)[]>(() => Array(Math.min(getByDifficulty().length, 10)).fill(null))
   const [showResults, setShowResults] = useState(false)
 
   const question = session[currentIndex]
@@ -149,7 +146,7 @@ export default function GuessRivers() {
   }
 
   function handleRestart() {
-    const newSession = buildSession(difficulty)
+    const newSession = buildSession()
     setSession(newSession)
     setAnswers(Array(newSession.length).fill(null))
     setCurrentIndex(0)
@@ -163,9 +160,6 @@ export default function GuessRivers() {
   return (
     <div className="quiz">
       <div className="quiz__topbar">
-        <span className={`quiz__difficulty quiz__difficulty--${difficulty}`}>
-          {difficulty === 'easy' ? 'Lätt' : difficulty === 'medium' ? 'Medel' : 'Svårt'}
-        </span>
         <span className="quiz__counter">{currentIndex + 1} / {total}</span>
       </div>
 

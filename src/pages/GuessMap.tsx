@@ -21,7 +21,7 @@ const regionProjection: Record<Region, { center: [number, number]; scale: number
 
 function getProjection(country: MapCountry): { center: [number, number]; scale: number } {
   const region = regionProjection[country.region]
-  const countryScale = Math.min(isCorrect ? 1000 : 12500, 300000 / Math.sqrt(country.area))
+  const countryScale = Math.min(12500, 300000 / Math.sqrt(country.area))
   if (countryScale > region.scale) {
     return { center: country.center, scale: countryScale }
   }
@@ -62,7 +62,7 @@ function WorldMap({ country }: { country: MapCountry }) {
         if (t < 1) animRef.current.rafId = requestAnimationFrame(animate)
       }
       animRef.current.rafId = requestAnimationFrame(animate)
-    }, isCorrect ? 1000 : 1250)
+    }, 1250)
     return cancelAnim
   }, [])
 
